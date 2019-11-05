@@ -1,21 +1,33 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Drawing Area</title>
-<!-- You can add your style here rather than in an external style sheet. -->
-<style>
-	canvas {
-	    border:5px solid #d3d3d3;
-	    background-color: #f1f1f1;
-	    display: block;
-	}
-</style>
-</head>
-<body>
-    <!-- DO NOT MODIFY THIS HTML -->
-    <canvas id = "myCanvas" width = "350" height = "500"  ></canvas>
-    <input type = "color" id = "picker"/>
-</body>
+
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Drawing Area</title>
+		<!-- You can add your style here rather than in an external style sheet. -->
+		<style>
+			canvas {
+				border: 5px solid #d3d3d3;
+				background-color: #f1f1f1;
+				display: block;
+			}
+		</style>
+		<script>
+			myCanvas.addEventListener(
+				'mousemove', function (e) {
+					console.log(e.x); //MUST NEED FOR ASSIGNMENT
+					console.log(e.y);
+					draw(e.x, e.y);
+			)
+			myCanvas.addEventListener('mousemove',function(e){console.log(e)})
+			window.addEventListener('keydown',function(e){console.log(e)})
+		</script>
+	</head>
+
+	<body>
+		<!-- DO NOT MODIFY THIS HTML -->
+		<canvas id="myCanvas" width="350" height="500"></canvas>
+		<input type="color" id="picker" />
+	</body>
+
 </html>
