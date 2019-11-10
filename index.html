@@ -13,14 +13,52 @@
 			}
 		</style>
 		<script>
-			myCanvas.addEventListener(
-				'mousemove', function (e) {
-					console.log(e.x); //MUST NEED FOR ASSIGNMENT
-					console.log(e.y);
-					draw(e.x, e.y);
-			)
-			myCanvas.addEventListener('mousemove',function(e){console.log(e)})
-			window.addEventListener('keydown',function(e){console.log(e)})
+			window.onload = function () {
+				document.getElementById("myCanvas").width = 0.8 * window.innerWidth;
+				document.getElementById("myCanvas").height = 0.8 * window.innerHeight;
+				let canvas = document.getElementById("myCanvas");
+
+				function draw(x, y, color = 'black') {
+					let ctx = canvas.getContext("2d");
+					ctx.beginPath();
+					ctx.arc(x, y, 10, 0, 2 * Math.PI);
+					ctx.fillStyle = color;
+					ctx.fill();
+				}
+				myCanvas.addEventListener(
+					'mousemove', function (e) {
+						console.log('x at', e.x);
+						console.log('y at', e.y);
+						draw(e.x, e.y);
+					}
+				)
+
+				window.addEventListener("resize", function () {
+					let temp = ctx.getImageData(0,0,W,H);
+					document.getElementById("myCanvas").width = 0.8 * window.innerWidth;
+					document.getElementById("myCanvas").height = 0.8 * window.innerHeight;
+					ctx.putImageData(temp,0,0);
+				});
+				window.addEventListener('keydown', function (e) {
+					if (e.key == 'r') {
+						color='red'
+					}
+					else if (e.key == 'g') {
+						color='green'
+					}
+					else if (e.key == 'b') {
+						color='blue'
+					}
+					else if (e.key == ' ') {
+						ctx.clearRect()
+					}
+					else if (e.key == 'ArrowUp') {
+					}
+					else if (e.key == 'ArrowDown') {
+					}
+					
+				})
+			}
 		</script>
 	</head>
 
