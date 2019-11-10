@@ -16,17 +16,24 @@
 			window.onload = function () {
 				document.getElementById("myCanvas").width = 0.8 * window.innerWidth;
 				document.getElementById("myCanvas").height = 0.8 * window.innerHeight;
+				let pick = document.getElementById('picker');
+				console.log(pick.value)
 				let canvas = document.getElementById("myCanvas");
 				let ctx = canvas.getContext("2d");
-				let color = 'black';
+				let color = pick.value;
 				let drawOK = true;
+
+
 				function draw(x, y, color, drawOK) {
 					ctx.beginPath();
 					ctx.arc(x, y, 10, 0, 2 * Math.PI);
 					ctx.fillStyle = color;
 					ctx.fill();
-
 				}
+				pick.addEventListener('change',function(){
+					console.log(pick.value)
+					color=pick.value;
+				})
 				window.addEventListener('keydown', function (e) {
 					console.log(e.key);
 					if (e.key == 'r') {
@@ -53,7 +60,7 @@
 
 				})
 				window.addEventListener("resize", function () {
-					let temp = ctx.getImageData(0, 0, W, H);
+					let temp = ctx.getImageData(0, 0, canvas.width, canvas.height);
 					document.getElementById("myCanvas").width = 0.8 * window.innerWidth;
 					document.getElementById("myCanvas").height = 0.8 * window.innerHeight;
 					ctx.putImageData(temp, 0, 0);
@@ -61,13 +68,13 @@
 
 				myCanvas.addEventListener(
 					'mousemove', function (e) {
-						console.log('x at', e.x);
-						console.log('y at', e.y);
-						if (drawOK==true){
-						draw(e.x, e.y, color);
+						// console.log('x at', e.x);
+						// console.log('y at', e.y);
+						if (drawOK == true) {
+							draw(e.x, e.y, color);
 						}
 					}
-				)
+				);
 			}
 		</script>
 	</head>
